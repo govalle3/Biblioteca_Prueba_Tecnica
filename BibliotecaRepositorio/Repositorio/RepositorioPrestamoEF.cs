@@ -1,12 +1,9 @@
 ﻿using BibliotecaDominio;
 using BibliotecaDominio.IRepositorio;
 using BibliotecaRepositorio.Builder;
-using BibliotecaRepositorio.Contexto;
 using BibliotecaRepositorio.Entidades;
-using System;
-using System.Collections.Generic;
+using BibliotecaRepositorioContexto;
 using System.Linq;
-using System.Text;
 
 namespace BibliotecaRepositorio.Repositorio
 {
@@ -50,6 +47,8 @@ namespace BibliotecaRepositorio.Repositorio
             {
                 LibroEntidad = libroEntidad,
                 FechaSolicitud = prestamo.FechaSolicitud,
+                FechaEntregaMaxima = prestamo.FechaEntregaMaxima,
+                NombreUsuario = prestamo.NombreUsuario
             };
 
             return prestamoEntidad;

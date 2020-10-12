@@ -1,21 +1,17 @@
 ﻿using BibliotecaRepositorio.Entidades;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace BibliotecaRepositorio.Contexto
+namespace BibliotecaRepositorioContexto
 {
     public class BibliotecaContexto : DbContext
     {
         public BibliotecaContexto(DbContextOptions<BibliotecaContexto> options):base(options)
         {
-            Database.EnsureCreated();
+            Database.EnsureCreated();  
         }
-
-
-        public DbSet<LibroEntidad> Libros { get; set; }
-        public DbSet<PrestamoEntidad> Prestamos { get; set; }
+        
+        public Microsoft.EntityFrameworkCore.DbSet<LibroEntidad> Libros { get; set; }  // Se establecen las directivas en ese lugar ya que presenta ambiguedad entre el metodo sistem.data.entity
+        public Microsoft.EntityFrameworkCore.DbSet<PrestamoEntidad> Prestamos { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
