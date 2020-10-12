@@ -12,6 +12,7 @@ namespace DominioTest.Unitarias
         private const int ANIO = 2012;
         private const string TITULO = "Cien años de soledad";
         private const string ISBN = "1234";
+
         public LibroTest()
         {
 
@@ -21,10 +22,8 @@ namespace DominioTest.Unitarias
         public void CrearLibroTest()
         {
             // Arrange
-            LibroTestDataBuilder libroTestBuilder = new LibroTestDataBuilder().ConTitulo(TITULO).
-                ConAnio(ANIO).ConIsbn(ISBN);
-
-
+            LibroTestDataBuilder libroTestBuilder = new LibroTestDataBuilder().
+                ConTitulo(TITULO).ConAnio(ANIO).ConIsbn(ISBN);
             // Act
             Libro libro = libroTestBuilder.Build();
 

@@ -1,39 +1,37 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DominioTest.Unitarias
 {
-    public class MetedoFecha
+    public class MetodoFecha
     {
-        public MetedoFecha()
+        public MetodoFecha()
         {
 
         }
 
-        public DateTime generarFechaEntregaMaxima(DateTime fechaIngreso, int diasSumar)
+        public DateTime GenerarFechaEntregaMaxima(DateTime fechaIngreso, int diasSumar)
         {
-            var fehcaEntregaMaxima = sumarDiasSinContarEsDomingos(fechaIngreso, diasSumar);
-            return fehcaEntregaMaxima;
+            var FechaEntregaMaxima = SumarDiasSinContarEsDomingos(fechaIngreso, diasSumar);
+            return FechaEntregaMaxima;
         }
 
-        public DateTime sumarDiasSinContarEsDomingos(DateTime fehsaAsumar, int diasumar)
+        public DateTime SumarDiasSinContarEsDomingos(DateTime FechaSumar, int diasumar)
         {
             var diasAoperar = diasumar - 1;
             var fechaEntrega = new DateTime();
             while (diasAoperar > 0)
             {
-                if (EsDomingo(fehsaAsumar))
+                if (EsDomingo(FechaSumar))
                 {
-                    fehsaAsumar = fehsaAsumar.AddDays(1);
-                    fechaEntrega = fehsaAsumar;
+                    FechaSumar = FechaSumar.AddDays(1);
+                    fechaEntrega = FechaSumar;
                     diasAoperar--;
                 }
                 else
                 {
-                    fehsaAsumar = fehsaAsumar.AddDays(1);
-                    fechaEntrega = fehsaAsumar;
+                    FechaSumar = FechaSumar.AddDays(1);
+                    fechaEntrega = FechaSumar;
                 }
             }
             return fechaEntrega;
@@ -41,30 +39,29 @@ namespace DominioTest.Unitarias
 
         public bool EsDomingo(DateTime fechaOperar)
         {
-            return fechaOperar.DayOfWeek.ToString() != "Sunday" ?  true :  false;
+            return fechaOperar.DayOfWeek.ToString() != "Sunday" ? true : false;
+        }
+
+
+        [TestClass]
+        public class testFEcha
+        {
+            [TestMethod]
+            public void tetFechaEntrega()
+            {
+                // Arragne
+                var fechasolicitud = new DateTime(2020, 10, 1); // Pasan 2 domingos para hacer entrega (17 oct)
+               // var fechasolicitud = DateTime;
+                var diasSumar = 15;
+                MetodoFecha mf = new MetodoFecha();
+                //Act
+                var resultadoFecha = mf.SumarDiasSinContarEsDomingos(fechasolicitud, diasSumar);
+                // Assert
+                Assert.AreEqual("17", resultadoFecha.Day.ToString());
+                Assert.AreEqual("10", resultadoFecha.Month.ToString());
+                Assert.AreEqual("2020", resultadoFecha.Year.ToString());
+            }
         }
     }
-
-    //[TestClass]
-    //public class testFEcha
-    //{
-    //    [TestMethod]
-    //    public void tetFechaEntrega()
-    //    {
-    //        // Arragne
-    //        var fechasolicitud = DateTime.Now;
-    //        var diasSumar = 15;
-    //        MetedoFecha mf = new MetedoFecha();
-
-    //        //Act
-    //        var resultadoFecha = mf.sumarDiasSinContarEsDomingos(fechasolicitud, diasSumar);
-
-    //        // Assert
-    //        Assert.AreEqual("04", resultadoFecha.Day.ToString());
-    //        Assert.AreEqual("08", resultadoFecha.Month.ToString());
-    //        Assert.AreEqual("2018", resultadoFecha.Year.ToString());
-
-    //    }
-    //}
 }
 

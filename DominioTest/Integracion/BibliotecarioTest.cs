@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using BibliotecaDominio;
-using BibliotecaRepositorio.Contexto;
 using BibliotecaRepositorio.Repositorio;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DominioTest.TestDataBuilders;
 using Microsoft.EntityFrameworkCore;
+using BibliotecaRepositorioContexto;
 
 namespace DominioTest.Integracion
 {
@@ -36,14 +34,11 @@ namespace DominioTest.Integracion
             Libro libro = new LibroTestDataBuilder().ConTitulo(CRONICA_UNA_MUERTE_ANUNCIADA).Build();
             repositorioLibro.Agregar(libro);
             Bibliotecario bibliotecario = new Bibliotecario(repositorioLibro, repositorioPrestamo);
-
             // Act
             bibliotecario.Prestar(libro.Isbn, "Juan");
-
             // Assert
             Assert.AreEqual(bibliotecario.EsPrestado(libro.Isbn), true);
             Assert.IsNotNull(repositorioPrestamo.ObtenerLibroPrestadoPorIsbn(libro.Isbn));
-
         }
 
         [TestMethod]
@@ -53,7 +48,6 @@ namespace DominioTest.Integracion
             Libro libro = new LibroTestDataBuilder().ConTitulo(CRONICA_UNA_MUERTE_ANUNCIADA).Build();
             repositorioLibro.Agregar(libro);
             Bibliotecario bibliotecario = new Bibliotecario(repositorioLibro, repositorioPrestamo);
-
             // Act
             bibliotecario.Prestar(libro.Isbn,"Juan");
             try
