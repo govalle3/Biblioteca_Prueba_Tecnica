@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System;
 
 namespace BibliotecaDominio
 {
     public class Prestamo
     {
-        public DateTime FechaSolicitud { get;}
-        public Libro Libro { get;}
-        public DateTime FechaEntregaMaxima { get; }
+        public DateTime FechaSolicitud { get; set; }  // se instancia las clases con get y set necesarias
+        public Libro Libro { get; set; }
+        public DateTime? FechaEntregaMaxima { get; set; } // Se agregó un ? para permitir generar valores nulos.
         public string NombreUsuario { get;}
 
-       
-        public Prestamo(DateTime fechaSolicitud, Libro libro, DateTime fechaEntregaMaxima, string nombreUsuario)
+        public Prestamo(DateTime fechaSolicitud, Libro libro, DateTime? fechaEntregaMaxima, string nombreUsuario)
         {
             this.FechaSolicitud = fechaSolicitud;
             this.Libro = libro;
